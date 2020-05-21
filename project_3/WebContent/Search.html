@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{background-image: url("bg-2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;}
+div   {color: black;
+		front-family: Apple Chancery;
+		padding-up: 40px;
+		padding-left: 40%;
+		font-size: 20px;
+		  margin: 10px;
+		  max-width: 400px;
+		  max-height:200px;
+		  display: block;
+		  width: 50%;
+}
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f2f2f2;
+}
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+  display: inline-block;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+.button:hover {
+  opacity: 1;
+}
+.button {
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+    opacity: 0.9;
+}
+</style>
+<meta charset="UTF-8">
+<title>Project_2_Search</title>
+</head>
+<script type="text/javascript">
+var queryString = decodeURIComponent(window.location.search);
+queryString1 = queryString.split("&");
+var queries1 = queryString1[0].split("=");
+var queries2 = queryString1[1].split("=");
+if(queries2[1])
+{
+	queries1[1] = queries1[1] + ",";
+	queries1[1] = queries1[1] + queries2[1];
+}
+
+function myFunction(){
+
+		window.location.href="\ShoppingServlet?cartArray=" + queries1[1];
+	
+}
+</script>
+<body>
+<div>
+	<h1>Search the movie that you want</h1>
+	<!-- Set the method to POST to avoid showing the username/password in the URL
+     The default action is disabled to allow your own implementation. -->
+<form id="search_movie" action="SearchServlet">
+    <label><b>Title</b></label>
+    <input type="text" placeholder="Enter your title" name="title">
+    <br>
+    <label><b>Year</b></label>
+    <input type="text" placeholder="Enter your year" name="year">
+    <br>
+    <label><b>Director</b></label>
+    <input type="text" placeholder="Enter your director" name="director">
+    <br>
+    <label><b>Star</b></label>
+    <input type="text" placeholder="Enter your star" name="star">
+    <br>
+    <label><b>Number of movies per page</b></label>
+    <select name="num">
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="25">25</option>
+    <option value="50">50</option>
+     <option value="">N/A</option>
+  </select>
+  <br>
+  <label><b>Sorted type</b></label>
+    <select name="type">
+    <option value="title">title </option>
+    <option value="rating">rating </option>
+    <option value="">N/A</option>
+  </select>
+  	<br>
+  	 <label><b>Sorted way</b></label>
+    <select name="direction">
+    <option value="ASC">ascending</option>
+    <option value="DESC">descending</option>
+  </select>
+  	<br>
+	<input type = "hidden" name = "titlestart" >
+	<input type = "hidden" name = "gid">
+	<input type = "hidden" name = "cartArray[]" class="cartArray">
+	<button type = "button" class = "button" onclick="myFunction()">Checkout</button>
+    <input type="submit" name = "page" class = "btn" value="Search">
+
+</form> 
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
+</html>

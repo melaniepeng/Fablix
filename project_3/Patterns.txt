@@ -1,0 +1,6 @@
+For the pattern problem, we decide to use for loop to make the string of each title, director or stars into characters, and for each character, we put “%” at the back and the front the character, ex “%a%.”
+By doing this way, it will satisfy all of the possibilities, like “%a” and “a%” 
+
+
+First, we add "%" at the back and the front of each character. 
+Second, we make it into a string parameter due to the different keys (s.name)

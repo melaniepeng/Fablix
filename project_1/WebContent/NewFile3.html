@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>b页面 </title>
+<script type="text/javascript" src="js/jquery/jquery-1.12.1.min.js"></script>
+
+<script type="text/javascript">
+var queryString = decodeURIComponent(window.location.search);
+queryString = queryString.substring(1);
+var queries = queryString.split("=");
+document.write(queries[1]);
+</script>
+</head>
+<body>
+<span>接收的值是：</span>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-color: linen;
+}
+
+td {
+    border-top-style: solid;
+}
+</style>
+</head>
+<body>
+
+<table style="width:100%">
+  <tr style="font-weight:bold; background-color: orange">
+    <td width="300px">Single-instance version cases</td>
+    <td>Graph Results Screenshot</td>
+    <td>Average Query Time(ms)</td>
+    <td>Average Search Servlet Time(ms)</td>
+    <td>Average JDBC Time(ms)</td>
+    <td>Analysis</td>
+  </tr>
+  <tr>
+    <td>Case 1: HTTP/1 thread</td>
+    <td><img src="Use HTTP, 1 thread in JMeter.png" alt="Graph Results Screenshot Case 1" style="width:304px;height:228px;"></td>
+    <td>179</td>
+    <td>7.648503586454786</td>
+    <td>5.92575035225123</td>
+    <td>With only one thread running, the time for search and JDBC are relatively small.</td>
+  </tr>
+  <tr>
+    <td>Case 2: HTTP/10 threads</td>
+    <td><img src="10 thread in JMeter 50.png" alt="Graph Results Screenshot Case 2" style="width:304px;height:228px;"></td>
+    <td>194</td>
+    <td>8.579409516275549</td>
+    <td>7.683521033686602</td>
+    <td>With 10 threads running at the same time, connection pooling come in handy, it fasten the process of creating connections with the database, so the time can be almost the same as running 1 thread.</td>
+  </tr>
+  <tr>
+    <td>Case 3: HTTPS/10 threads</td>
+    <td><img src="Use HTTPS, 10 threads in JMeter.png" alt="Graph Results Screenshot Case 3" style="width:304px;height:228px;"></td>
+    <td>398</td>
+    <td>41.593776164964055</td>
+    <td>35.555343327657965</td>
+    <td>The search becomes slower with https enabled, it first has to get an initial handshake with https, which will make it run slower compare to http, then it can start the query.</td>
+  </tr>
+  <tr>
+    <td>Case 4: HTTP/10 threads/No prepared statements</td>
+    <td><img src="Use HTTP, without using prepared statements, 10 threads in JMeter.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>342</td>
+    <td>31.44587017886497</td>
+    <td>30.20014088727984</td>
+    <td>Without prepared statements, the query is not able to execute same or similar SQL statements repeatedly, therefore it slows down the time.</td>
+  </tr>
+  <tr>
+    <td>Case 5: HTTP/10 threads/No connection pooling</td>
+    <td><img src="Use HTTP, without using connection pooling, 10 threads in JMeter.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>247</td>
+    <td>63.06600027365632</td>
+    <td>57.58479904163513</td>
+    <td>Without using connection pooling, searching with 10 threads become very slow, it has to create a new connection each time instead of getting an available connection from the pool.</td>
+  </tr>
+
+</table> 
+
+
+<table style="width:100%">
+  <tr style="font-weight:bold; background-color: orange">
+    <td width="300px">Scaled version cases</td>
+    <td>Graph Results Screenshot</td>
+    <td>Average Query Time(ms)</td>
+    <td>Average Search Servlet Time(ms)</td>
+    <td>Average JDBC Time(ms)</td>
+    <td>Analysis</td>
+  </tr>
+  <tr>
+    <td>Case 1: HTTP/1 thread</td>
+    <td><img src="sv Use HTTP, 1 thread in JMeter.png" alt="Graph Results Screenshot Case 1" style="width:304px;height:228px;"></td>
+    <td>114</td>
+    <td>7.629688662126372</td>
+    <td>5.869784784335981</td>
+    <td>Running 1 thread on a scaled version is not much different from single instance version, 1 thread does not tell much difference.</td>
+  </tr>
+  <tr>
+    <td>Case 2: HTTP/10 threads</td>
+    <td><img src="sv Use HTTP, 10 threads in JMeter.png" alt="Graph Results Screenshot Case 2" style="width:304px;height:228px;"></td>
+    <td>144</td>
+    <td>11.400626822281168</td>
+    <td>10.074514182644942</td>
+    <td>Running 10 threads on the scaled version, it distributes the task on the backend to different servers, which in turns fasten the process. </td>
+  </tr>
+  <tr>
+    <td>Case 3: HTTP/10 threads/No prepared statements</td>
+    <td><img src="sv no preparedstatement.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>213</td>
+    <td>88.08093940575321</td>
+    <td>84.79895305639667</td>
+    <td>Even though it is scaled, with no prepared statement, it has to create a new SQL statement for each query search request, therefore it slows down the process.</td>
+  </tr>
+  <tr>
+    <td>Case 4: HTTP/10 threads/No connection pooling</td>
+    <td><img src="sv without using connection pooling, 10 threads in JMeter.png" alt="Graph Results Screenshot Case 4" style="width:304px;height:228px;"></td>
+    <td>205</td>
+    <td>78.80646001135503</td>
+    <td>71.54946175510977</td>
+    <td>With no connection pooling, each search on the search page has to create a new SQL connection for searching, opening and closing each SQL connection slows down the process. </td>
+  </tr>
+
+</table> 
+
+</body>
+</html>

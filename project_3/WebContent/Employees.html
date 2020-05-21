@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{background-image:url("bg-2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;}
+div {
+  margin: 10px;
+  max-width: 300px;
+  max-height:200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f2f2f2;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+</style>
+<meta charset="UTF-8">
+<title>Project_2_login</title>
+</head>
+<body>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<div class = "container">
+	<h1>Login as a employee</h1>
+	<!-- Set the method to POST to avoid showing the username/password in the URL
+     The default action is disabled to allow your own implementation. -->
+<form id="login_form" method="post" action="#">
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter your email" name="username">
+    <br>
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password">
+    <br>
+     <input type="hidden"  name="password">
+    <br>
+    <input type="submit" class="btn" value="Login">
+    <div class="g-recaptcha" data-sitekey="6LeJWJEUAAAAAIJDt4Nr2FWehm2Oi5aYhf-YOGgW"></div>
+</form>
+</div>
+<div id="login_error_message"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- include our own JS file -->
+<script src="./login.js"></script>
+
+</body>
+</html>

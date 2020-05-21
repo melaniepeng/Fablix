@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{background-image:url("bg-2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;}
+div {
+  margin: 10px;
+  max-width: 300px;
+  max-height:200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f2f2f2;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+</style>
+<meta charset="UTF-8">
+<title>Project_2_InsertStar</title>
+</head>
+<body>
+<div class = "container">
+	<h1>NewStar</h1>
+	<!-- Set the method to POST to avoid showing the username/password in the URL
+     The default action is disabled to allow your own implementation. -->
+<form method="post" action="InsertStarServlet">
+    <label><b>Starname</b></label>
+    <input type="text" placeholder="Enter your starname" name="starname" required/>
+    <br>
+    <label><b>Birth Date</b></label>
+    <input type="text" placeholder="Enter birth date" name="birth" />
+    <br>
+    <input type="submit" class="btn" >
+</form>
+</div>
+<div id="login_error_message"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+</body>
+</html>

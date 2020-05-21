@@ -1,0 +1,136 @@
+<!-- This example is following frontend and backend separation.
+
+    This .html performs two steps:
+    1. Create a html template skeleton, with all the elements defined (some left empty) and named with ids.
+    2. Load single-star.js to populate the data into empty elements.
+    -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Movies</title>
+</head>
+<script type="text/javascript">
+function toprevious(){
+	var queryString = decodeURIComponent(window.location.search);
+	queryString = queryString.substring(1);
+	var queries = queryString.split("&");
+	var num =  queries[0].split("=")[1];
+	var title = queries[1].split("=")[1];
+	var page = Number(queries[2].split("=")[1])-1;
+	if(page<0){
+		page = 0
+	}
+	location.href="Movies.html?num="+num+"&title="+title+"&page="+page;
+	
+};
+
+function tonext(){
+	var queryString = decodeURIComponent(window.location.search);
+	queryString = queryString.substring(1);
+	var queries = queryString.split("&");
+	var num =  queries[0].split("=")[1];
+	var title = queries[1].split("=")[1];
+	var page = Number(queries[2].split("=")[1])+1;
+	location.href="Movies.html?num="+num+"&title="+title+"&page="+page;
+};
+</script>
+<style>
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #66ccff;
+  color: white;
+}
+.back{
+  background-color: black;
+  color: white;
+}
+</style>
+<body>
+<h1>Movie Page</h1>
+
+<!-- H3 body is left empty here, will be populated with the data retrieved with single-star.js -->
+<!-- single-star.js will find this html element by it's id "star_info" -->
+<a href="#" onclick="toprevious()" class="previous">&laquo; Previous</a>
+<a href="#" onclick="tonext()" class="next">Next &raquo;</a>
+<a href = "Search.html" class = "back">Back to Search</a>
+<form id="search_movie" action="Movies.html" >
+    <div class="container">
+    <label><b>Number of movies per page</b></label>
+			    <select name="num">
+			    <option value="10">10</option>
+			    <option value="20">20</option>
+			    <option value="25">25</option>
+			    <option value="50">50</option>
+	 </select>
+		 <input type="hidden" name = "title" id = "gettitle" >	
+		  <input type="hidden" name = "page" id = "getpage" >	
+	 	<script type="text/javascript">
+	 	var queryString1 = decodeURIComponent(window.location.search);
+		queryString = queryString1.substring(1);
+		var queries1 = queryString1.split("&");
+		var title1 = queries1[1].split("=")[1];
+		var page1 = Number(queries1[2].split("=")[1]);
+		document.getElementById("gettitle").value = title1;
+		document.getElementById("getpage").value = page1;
+		</script>
+	    <input type="submit" value = "Search" class="btn">
+    </div>	    
+</form>
+<table id=movie_table class="table table-striped">
+    <thead>
+    <tr>
+    	<th>Movie Num</th>
+        <th>Movie Title</th>
+        <th>Release Year</th>
+        <th>Director</th>
+        <th>genre</th>
+        <th>rating</th>
+        <th>Stars</th>
+        <th>
+    </tr>
+    </thead>
+
+    <!-- Table body is left empty here, will be populated with the data retrieved with single-star.js -->
+    <!-- single-star.js will find this html element by it's id "movie_table_body" -->
+    <tbody id=movie_table_body></tbody>
+</table>
+
+<!-- Load jQuery and Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Load our own JS file -->
+<!-- The path is relative to single-star.html, since these two files are in the same directory -->
+<!-- Note the url does not contain a "/" in the beginning, which means the url is relative to current path
+     otherwise the url is relative to the root path-->
+<script src="movies.js"></script>
+</body>
+
+
+</html>

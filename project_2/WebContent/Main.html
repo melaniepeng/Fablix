@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Project_2_Main</title>
+<style>
+body{background-image: url("bg-2.jpg");
+	  background-repeat: no-repeat;
+	  background-size: cover;}
+
+</style>
+<!-- Using jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- include jquery autocomplete JS  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.7/jquery.autocomplete.min.js"></script>
+
+    <!-- Bootstrap for CSS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class = "text">
+	<h1>You want Searching or Browsing?</h1>
+	<a href="Search.html">Search</a>
+	<a href="BrowsingServlet?">Browsing</a>
+	<a href="ShoppingServlet?cartArray=&cartArray=">Shopping Cart</a>
+	<a href="Employees.html">Employees</a>
+	<a href="Movie.html">Insert</a>
+</div>
+<form id="search_movie" action="SingleMServelet">
+    <div class="container">
+	    <input type="text" name="title" id="autocomplete" 
+	       class="autocomplete-searchbox form-control" 
+	       placeholder="Search movie" pattern=".{3,}" required/>
+	    <input type = "hidden"  name="cartArray">
+	    <input type = "hidden"  name="id">
+	    <input type = "hidden"  name="year">
+	    <input type = "hidden"  name="director">
+	    <input type = "hidden"  name="star">
+	    <input type = "hidden"  name="page">
+	    <input type = "hidden"  name="type">
+	    <input type = "hidden"  name="direction">
+	    <input type = "hidden"  name="num">
+	    <input type = "hidden"  name="titlestart">
+	    <input type = "hidden"  name="gid">
+	    <input type="submit" value = "Search" class="btn">
+    </div>
+</form>
+    <script src="Search.js"></script>
+</body>
+</html>
